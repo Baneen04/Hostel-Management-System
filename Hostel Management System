@@ -1,0 +1,1412 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+//-----------------------------------------------------------------------------------------------------
+//===================================== MANAGEMENT CLASS===============================================
+//-----------------------------------------------------------------------------------------------------
+class Management {
+protected:
+	int number_student;
+	string name_student;
+	string rollno_student;
+	long int id_student;
+	 int id;
+	int roll;
+	string name;
+	int id_s;
+	string name_s;
+	int count;
+	int fees;
+	int stu_data;
+	int no;
+public:
+	Management() {
+		number_student = 0;
+	}
+	//	void search1();
+	//	void search2();
+	//	void search3();
+	//	void search4();
+};
+
+//-----------------------------------------------------------------------------------------------------
+//===================================== SALARY CLASS===================================================
+//-----------------------------------------------------------------------------------------------------
+class Salary {
+public:
+	void Employees_salary()
+	{
+		cout << "\n\n\t\t Salaries are Given below:\n"
+			<< "\n\t No.  Post           		Salary"
+			<< "\n\t-----------------------------------------"
+			<< "\n\t|01   Manager          	  	25,000/- |"
+			<< "\n\t|05   Guards           	  	75,000/- |"
+			<< "\n\t|01   Cook   			15,000/- |"
+			<< "\n\t|04   Sweeper		        40,000/- |"
+			<< "\n\t|01   Serving Boy	  	05,000/- |"
+			<< "\n\t-----------------------------------------";
+	}
+};
+
+//-----------------------------------------------------------------------------------------------------
+//===================================== HOSTEL 1 CLASS=================================================
+//-----------------------------------------------------------------------------------------------------
+class Hostel_1 : public Management {
+public:
+	void student1();
+	void student_total1();
+	void menu1();
+	void search1();
+};
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------- Student data entry Function-----------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Hostel_1::student1() {
+	int n = 0;
+	char a;
+	ofstream myfile;
+	myfile.open("hostel.txt", ios::out);
+	if (!myfile) {
+		cout << "No file";
+	}
+	else {
+		while (n = 200) {
+			cout << "\n\n\t\t-------- Welcome to the Students data Entry..--------"
+				<< "\n\t\t\t   <<<<<<<Enter the details:>>>>>>>"
+				<< "\n\n\tEnter number of Students in Hostel:  ";
+			cin >> number_student;
+			cout << "\n\tHow many students data u want to enter: ";
+			cin >> stu_data;
+			for (int i = 0; i < stu_data; i++)
+			{
+				cout << "\n\n\tEnter Name of Student:  ";
+				cin >> name_student;
+				myfile << name_student << endl;
+				cout << "\n\n\tEnter Roll number of Student:  ";
+				cin >> rollno_student;
+				myfile << rollno_student << endl;
+				cout << "\n\n\tEnter ID number of Student:  ";
+				cin >> id_student;
+				myfile << id_student << endl;
+				cout << "\n\n\t Want to exist [y/n]? ";
+				cin >> a;
+				if (a == 'y' || a == 'Y')
+				{
+					break;
+				}
+			}
+			break;
+		}
+		cout << "Hostel 1 file created";
+		myfile.close();
+	}
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------- Student TOTAL Function ---------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Hostel_1::student_total1() {
+	ifstream student;
+	student.open("hostel.txt", ios::in);
+	if (!student) {
+		cout << "File Not Found: " << endl;
+		student.close();
+	}
+	else {
+		cout << "\n\t\t\f\f\f\f\f\f\f\f\f\f\f\f\f STUDENT DATA \f\f\f\f\f\f\f\f\f\f\f\f\f";
+		for (int i = 0; i < 5; i++) {
+			cout << "\n\n\t==>Student ---{" << i + 1 << "}--- data";
+			student >> name;
+			cout << "\n\n\tStudent Name:" << name;
+			student >> id >> no;
+			cout << "\n\tStudent I'd: " << id;
+			cout << "\n\tMonthly Hostel Charges: Rent+Mess=10,000+5000\n\tCharges=15,000";
+			break;
+		}
+	}
+	student.close();
+}
+
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------- Student MENU Function ----------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Hostel_1::menu1()
+{
+	cout << "\n\n\tHostel Charges Details are given below:"
+		<< "\n\t---------------------------------------------"
+		<< "\n\t Security\t\t20,000\t(Refundable)"
+		<< "\n\t Admission\t\t7000\t(One Time)"
+		<< "\n\tHostel Rent\t\t30,000\t(10,000 per Month)"
+		<< "\n\tMess Charges\t\t15,000\t(5000 per Month)"
+		<< "\n\t TOTAL       \t\t72,000"
+		<< "\n\t---------------------------------------------";
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------- Student SEARCH Function --------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Hostel_1::search1() {
+	int std_id;
+	int search;
+	int count = 0;
+	string std_name;
+	string std_name2;
+	ifstream student;
+	if (!student) {
+
+		cout << "File Not Found: " << endl;
+		student.close();
+	}
+	student.open("hostel.txt", ios::in);
+	//student >> std_name >> std_name2 >> std_id;
+	cout << "\n\t\t Enter id:";
+	cin >> search;
+
+		cout << "/////////////////////////////////////////////////////////////////////\n\n";
+		while (1) {
+
+			student >> std_name >> std_name2 >> std_id;
+			//cout << std_id;
+
+			if (student.fail())
+				break;
+			if (search == std_id)
+			{
+				cout <<"\n\tname : " << std_name << "\n\t id : " << std_name2 << "\n\t id :" << std_id << "\n";
+				count++;
+				break;
+				
+			}
+			
+		
+		
+	}
+		int fine = 0;
+		cout << "\n\tEnter fine of student : " << endl;
+		cin >> fine;
+		fine = 15000 + fine;
+		cout << "Total due of student : " << fine;
+		if (count<1)
+		{
+			cout << "Id not found : " << endl;
+		}
+	student.close();
+}
+
+//-----------------------------------------------------------------------------------------------------
+//===================================== HOSTEL 2 CLASS=================================================
+//-----------------------------------------------------------------------------------------------------
+
+class Hostel_2 : public Management {
+public:
+	void student2();
+	void student_total2();
+	void menu2();
+	void search2();
+};
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------- Student data entry Function-----------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Hostel_2::student2() {
+	int n;
+	char a;
+	ofstream myfile2;
+	myfile2.open("hostel2.txt", ios::out);
+	if (!myfile2) {
+		cout << "No file";
+	}
+	else {
+		while (n = 200) {
+			cout << "\n\n\t\t-------- Welcome to the Students data Entry..--------"
+				<< "\n\t\t\t   <<<<<<<Enter the details:>>>>>>>"
+				<< "\n\n\tEnter number of Students in Hostel:  ";
+			cin >> number_student;
+			cout << "\n\tHow many students data u want to enter: ";
+			cin >> stu_data;
+			for (int i = 0; i < stu_data; i++)
+			{
+				cout << "\n\n\tEnter Name of Student:  ";
+				cin >> name_student;
+				myfile2 << name_student << endl;
+				cout << "\n\n\tEnter Roll number of Student:  ";
+				cin >> rollno_student;
+				myfile2 << rollno_student << endl;
+				cout << "\n\n\tEnter ID number of Student:  ";
+				cin >> id_student;
+				myfile2 << id_student << endl;
+				cout << "\n\n\t Want to exist [y/n]? ";
+				cin >> a;
+				if (a == 'y' || a == 'Y')
+				{
+					break;
+				}
+			}
+			break;
+		}
+		cout << " Hostel 2 File created";
+		myfile2.close();
+	}
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------- Student TOTAL Function ---------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Hostel_2::student_total2() {
+	Management arr[5];
+	string name;
+	int id;
+	ifstream student2;
+	student2.open("Hoste2.txt", ios::in);
+	if (!student2) {
+		cout << "File Not Found: " << endl;
+		student2.close();
+	}
+	else {
+		cout << "\n\t\t\f\f\f\f\f\f\f\f\f\f\f\f\f STUDENT DATA \f\f\f\f\f\f\f\f\f\f\f\f\f";
+		for (int i = 0; i < 5; i++) {
+			cout << "\n\n\t==>Student ---{" << i + 1 << "}--- data";
+			student2 >> name;
+			cout << "\n\n\tStudent Name:" << name;
+			student2 >> id >> no;
+			cout << "\n\tStudent I'd: " << id;
+			cout << "\n\tMonthly Hostel Charges: Rent+Mess=15,000+7000\n\tCharges=22,000";
+
+		}
+	}
+	student2.close();
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------- Student MENU Function ----------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Hostel_2::menu2()
+{
+	cout << "\n\n\tHostel Charges Details are given below:"
+		<< "\n\t---------------------------------------------"
+		<< "\n\t Security\t\t20,000\t(Refundable)"
+		<< "\n\t Admission\t\t5000\t(One Time)"
+		<< "\n\tHostel Rent\t\t35,000\t(15,000 per Month)"
+		<< "\n\tMess Charges\t\t15,000\t(7000 per Month)"
+		<< "\n\t TOTAL       \t\t75,000"
+		<< "\n\t---------------------------------------------";
+}
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------- Student SEARCH Function --------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Hostel_2::search2() {
+	int std_id;
+	int search;
+	int count = 0;
+	string std_name;
+	string std_name2;
+	ifstream student2;
+	if (!student2) {
+
+		cout << "File Not Found: " << endl;
+		student2.close();
+	}
+	student2.open("hostel2.txt", ios::in);
+//	student2 >> std_name >> std_name2 >> std_id;
+	//cout << std_id;
+	cout << "\n\t\t Enter id:";
+	cin >> search;
+
+	cout << "/////////////////////////////////////////////////////////////////////\n\n";
+	while (1) {
+
+		student2 >> std_name >> std_name2 >> std_id;
+		if (student2.fail())
+			break;
+		if (search == std_id)
+		{
+			cout << "\n\tname : " << std_name << "\n\t id : " << std_name2 << "\n\t id :" << std_id << "\n";
+			count++;
+			break;
+
+		}
+	}
+
+	int fine = 0;
+	cout << "\n\tEnter fine of student : " << endl;
+	cin >> fine;
+	fine = 15000 + fine;
+	cout << fine;
+	if (count < 1)
+	{
+		cout << "Id not found : " << endl;
+	}
+
+	student2.close();
+}
+
+//-----------------------------------------------------------------------------------------------------
+//===================================== HOSTEL 3 CLASS=================================================
+//-----------------------------------------------------------------------------------------------------
+
+class Hostel_3 :public Management {
+public:
+	void student3();
+	void student_total3();
+	void menu3();
+	void search3();
+};
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------- Student data entry Function-----------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Hostel_3::student3() {
+	int n;
+	char a;
+	ofstream myfile3;
+	myfile3.open("hostel3.txt", ios::out);
+	if (!myfile3) {
+		cout << "No file";
+	}
+	else {
+		while (n = 200) {
+			cout << "\n\n\t\t-------- Welcome to the Students data Entry..--------"
+				<< "\n\t\t\t   <<<<<<<Enter the details:>>>>>>>"
+				<< "\n\n\tEnter number of Students in Hostel:  ";
+			cin >> number_student;
+			cout << "\n\tHow many students data u want to enter: ";
+			cin >> stu_data;
+			for (int i = 0; i < stu_data; i++)
+			{
+				cout << "\n\n\tEnter Name of Student:  ";
+				cin >> name_student;
+				myfile3 << name_student << endl;
+				cout << "\n\n\tEnter Roll number of Student:  ";
+				cin >> rollno_student;
+				myfile3 << rollno_student << endl;
+				cout << "\n\n\tEnter ID number of Student:  ";
+				cin >> id_student;
+				myfile3 << id_student << endl;
+				cout << "\n\n\t Want to exist [y/n]? ";
+				cin >> a;
+				if (a == 'y' || a == 'Y')
+				{
+					break;
+				}
+			}
+			break;
+		}
+		cout << "Hostel 3 File created";
+		myfile3.close();
+	}
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//----------------------------------------- Student TOTAL Function-------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Hostel_3::student_total3() {
+
+	string name;
+	int id;
+	ifstream student3;
+	student3.open("Hoste3.txt", ios::in);
+	if (!student3) {
+
+		cout << "File Not Found: " << endl;
+		student3.close();
+	}
+	else {
+		cout << "\n\t\t\f\f\f\f\f\f\f\f\f\f\f\f\f STUDENT DATA \f\f\f\f\f\f\f\f\f\f\f\f\f";
+		for (int i = 0; i < 5; i++) {
+			cout << "\n\n\t==>Student ---{" << i + 1 << "}--- data";
+			student3 >> name;
+			cout << "\n\n\tStudent Name:" << name;
+			student3 >> id >> no;
+			cout << "\n\tStudent I'd: " << id
+				<< "\n\tRent+Mess=20,000+6000\n\tCharges=26,000";
+		}
+	}
+	student3.close();
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//------------------------------------------ Student MENU Function ------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Hostel_3::menu3()
+{
+	cout << "\n\n\tHostel Charges Details are given below:"
+		<< "\n\t---------------------------------------------"
+		<< "\n\t Security\t\t20,000\t(Refundable)"
+		<< "\n\t Admission\t\t9000\t(One Time)"
+		<< "\n\tHostel Rent\t\t20,000\t(20,000 per Month)"
+		<< "\n\tMess Charges\t\t10,000\t(6000 per Month)"
+		<< "\n\t TOTAL       \t\t59,000"
+		<< "\n\t---------------------------------------------";
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------- Student SEARCH Function --------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Hostel_3::search3() {
+	int std_id;
+	int search;
+	int count = 0;
+	string std_name;
+	string std_name2;
+	ifstream student3;
+	if (!student3) {
+
+		cout << "File Not Found: " << endl;
+		student3.close();
+	}
+	student3.open("hostel.txt", ios::in);
+	cout << "\n\t\t Enter id:";
+	cin >> search;
+
+	cout << "/////////////////////////////////////////////////////////////////////\n\n";
+	while (1) {
+
+		student3 >> std_name >> std_name2 >> std_id;
+
+
+		if (student3.fail())
+			break;
+		if (search == std_id)
+		{
+			cout << "\n\tname : " << std_name << "\n\t id : " << std_name2 << "\n\t id :" << std_id << "\n";
+			count++;
+			break;
+			
+
+		}
+
+
+
+	}
+	int fine = 0;
+	cout << "\n\tEnter fine of student : " << endl;
+	cin >> fine;
+	fine = 15000 + fine;
+	cout << fine;
+	if (count < 1)
+	{
+		cout << "Id not found : " << endl;
+	}
+
+	student3.close();
+}
+
+//-----------------------------------------------------------------------------------------------------
+//===================================== GIRLS HOSTEL CLASS=============================================
+//-----------------------------------------------------------------------------------------------------
+class Girls :public Management {
+public:
+	//Girls(){};
+	void student4();
+	void student_total4();
+	void menu4();
+	void search4();
+};
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------- Student data entry Function-----------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Girls::student4() {
+	int n;
+	char a;
+	ofstream myfile4;
+
+	myfile4.open("hostel4.txt", ios::out);
+	if (!myfile4) {
+		cout << "No file";
+	}
+	else {
+		while (n = 200) {
+			cout << "\n\n\t\t-------- Welcome to the Students data Entry..--------"
+				<< "\n\t\t\t   <<<<<<<Enter the details:>>>>>>>"
+				<< "\n\n\tEnter number of Students in Hostel:  ";
+			cin >> number_student;
+			cout << "\n\tHow many students data u want to enter: ";
+			cin >> stu_data;
+			for (int i = 0; i < stu_data; i++)
+			{
+				cout << "\n\n\tEnter Name of Student:  ";
+				cin >> name_student;
+				myfile4 << name_student << endl;
+				cout << "\n\n\tEnter Roll number of Student:  ";
+				cin >> rollno_student;
+				myfile4 << rollno_student << endl;
+				cout << "\n\n\tEnter ID number of Student:  ";
+				cin >> id_student;
+				myfile4 << id_student << endl;
+				cout << "\n\n\t Want to exist [y/n]? ";
+				cin >> a;
+				if (a == 'y' || a == 'Y')
+				{
+					break;
+				}
+			}
+			break;
+
+		}
+		cout << " Girls hostel File created";
+		myfile4.close();
+	}
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//------------------------------------------- Student TOTAL Function-----------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Girls::student_total4() {
+	string name;
+	int id;
+	ifstream student4;
+	student4.open("Hoste4.txt", ios::in);
+	if (!student4) {
+		cout << "File Not Found: " << endl;
+		student4.close();
+	}
+	else {
+		cout << "\n\t\t\f\f\f\f\f\f\f\f\f\f\f\f\f STUDENT DATA \f\f\f\f\f\f\f\f\f\f\f\f\f";
+		for (int i = 0; i < 5; i++) {
+			cout << "\n\n\t==>Student ---{" << i + 1 << "}--- data";
+			student4 >> name;
+			cout << "\n\n\tStudent Name:" << name;
+			student4 >> id >> no;
+			cout << "\n\tStudent I'd: " << id;
+			cout << "\n\tMonthly Hostel Charges: Rent+Mess=12,000+9,000\n\tCharges=21,000";
+		}
+	}
+	student4.close();
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------- Student MENU Function ----------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Girls::menu4()
+{
+	cout << "\n\n\tHostel Charges Details are given below:"
+		<< "\n\t---------------------------------------------"
+		<< "\n\t Security\t\t25,000\t(Refundable)"
+		<< "\n\t Admission\t\t7000\t(One Time)"
+		<< "\n\tHostel Rent\t\t34,000\t(12,000 per Month)"
+		<< "\n\tMess Charges\t\t16,000\t(9000 per Month)"
+		<< "\n\t TOTAL       \t\t82,000"
+		<< "\n\t---------------------------------------------";
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------- Student SEARCH Function --------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Girls::search4() {
+	ifstream student4;
+	student4.open("Hostel4.txt", ios::in);
+	if (!student4) {
+		cout << "File Not Found: " << endl;
+		student4.close();
+	}
+	else {
+		int fine_student = 0;
+		cout << "===========> SEARCH SYSTEM <===========";
+		cout << "\n\tEnter id:";
+		cin >> id_s;
+		cout << "\n\tEnter fine of this student: ";
+		cin >> fine_student;
+		for (int i = 0; i < 5; i++) {
+			if (id_s == id_student) {
+				student4 >> id;
+				id_s = id;
+				student4 >> name;
+				name_s = name;
+			}
+			else {
+				cout << "\n\tNo student is available of this id in this hostel";
+			}
+		}
+		fees = 15000 + fine_student;
+		cout << "\n\t\tId= " << id_s << "\n\t\tName= " << name_s << "\n\t\tDues=" << fees;
+	}
+}
+
+//-----------------------------------------------------------------------------------------------------
+//=========================================== MESS CLASS===============================================
+//-----------------------------------------------------------------------------------------------------
+
+class Mess :public Hostel_1, Hostel_2, Hostel_3, Girls
+{
+private:
+	int o;
+	int bre;
+	int din;
+	string breakfast[10];
+	string dinner[10];
+public:
+	void Breakfast();
+	void Dinner();
+	void mess_system();
+};
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//------------------------------------------ BREAKFAST Function ---------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Mess::Breakfast()
+{
+	cout << "\n\n\t\t\t############# Welcome to the Brekfast Menu #############";
+	cout << "\n\n\t How many dishes you want to eat ?";
+	cin >> bre;
+	cout << "\n\n\t Enter the dishes names you want to Eat in breakfast:\n\n\t";
+	for (int i = 0; i < bre; i++)
+	{
+		cout << "\n\t" << i + 1 << ")";
+		cin >> breakfast[i];
+	}
+	cout << "\n\n\tGreat! Your Food is Almost ready";
+	mess_system();
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//--------------------------------------------- DINNER Function----------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Mess::Dinner()
+{
+	int n;
+	cout << "\n\t\t############# Welcome to the Dinner Menu #############";
+	cout << "\n\n\t How many dishes you want to eat ?";
+	cin >> din;
+	cout << "\n\t Enter the dishes names you want to Eat in Dinner \n\n\t";
+	for (int i = 0; i < din; i++)
+	{
+		cout << "\n\t" << i + 1 << ")";
+		cin >> breakfast[i];
+	}
+	cout << "\n\tGreat! Your Food is Almost ready";
+	mess_system();
+}
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//--------------------------------------------- MESS SYSTEM Function-----------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  
+
+void Mess::mess_system()
+{
+	cout << "\n\n\t\t<<<<<<<<<< Welcomt to the Mess System >>>>>>>>>>"
+		<< "\n\t Select one"
+		<< "\n\t1-Breakfast"
+		<< "\n\t2-Dinner"
+		<< "\n\t3-Go to MAin Menu\n\n\t";
+	cin >> o;
+	switch (o)
+	{
+	case 1:
+		Breakfast();
+		break;
+	case 2:
+		Dinner();
+		break;
+	case 3:
+		//					Main_menu();
+		break;
+	}
+}
+
+//-----------------------------------------------------------------------------------------------------
+//========================================== GUEST CLASS===============================================
+//-----------------------------------------------------------------------------------------------------
+class Guests : public Hostel_1, Hostel_2, Hostel_3, Girls
+{
+protected:
+	int g;
+	string s_name;
+	string g_name;
+	int s_id;
+	long int g_id;
+	int guest;
+	int number_g;
+	int g_total;
+	int count;
+public:
+	void student_guest();
+	void guest_total();
+	void guest_menu();
+};
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------------- GUEST ENTRY  Function-----------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Guests::student_guest()
+{
+	char x;
+	char yes;
+	ofstream myfile;
+	myfile.open("Guest1.txt", ios::app);
+	cout << "\n\tHow many Students Want to bring Guests? ";
+	cin >> number_g;
+	cout << "\n\tDid they grant permission?";
+	cin >> yes;
+	if (yes == 'y') {
+		for (int i = 0; i < number_g; i++)
+		{
+			int count = 3;
+			cout << "\n\t Enter Student Name: ";
+			cin >> s_name;
+			cout << "\n\t Student Id: ";
+			cin >> s_id;
+			cout << "\n\tNumber of guests: ";
+			cin >> guest;
+			if (guest >= 3) {
+				cout << "\n\tNo more Guests ";
+			}
+			else {
+				cout << "\n\t Guest Name ";
+				cin >> g_name;
+				cout << "\n\t Guest Id";
+				cin >> g_id;
+				cout << "\n\tTotal amount : ";
+				cin >> g_total;
+				myfile << s_id << "\t" << s_name << "\t" << g_name << "\t" << guest << "\t" << g_id << "\t" << g_total << endl;
+			}
+			cout << "\n\tWant to exit[y/n]? ";
+			cin >> x;
+			if (x == 'y' || x == 'Y')
+			{
+				break;
+			}
+		}
+		cout << "Guest file created";
+		myfile.close();
+		guest_menu();
+	}
+	else {
+		cout << "\n\tFirst ask permission from the management ";
+		guest_menu();
+	}
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//--------------------------------------------- GUEST TOTAL Function-----------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Guests::guest_total()
+{
+	for (int i = 0; i < number_g; i++)
+	{
+		cout << "\n\t Student Name: " << s_name;
+		cout << "\n\t Student Id: " << s_id;
+		cout << "\n\t Guest Name: " << g_name;
+		cout << "\n\t Guest Id: " << s_id;
+		cout << "\n\tStudent Total Bill of Guests=" << g_total << endl;
+	}
+	guest_menu();
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//---------------------------------------------- GUEST MENU Function-----------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Guests::guest_menu() {
+	cout << "\n\n\t\t <<<<<<<<<< Welcome to the Guest Information >>>>>>>>>>"
+		<< "\n\t Select one"
+		<< "\n\t1-Guest Entry"
+		<< "\n\t2-Show list of Total Guest"
+		<< "\n\t3-Goto Main menu\n\n\t";
+	cin >> g;
+	switch (g)
+	{
+	case 1:
+		student_guest();
+		break;
+	case 2:
+		guest_total();
+		break;
+	case 3:
+		//					Main_menu();
+		break;
+	}
+}
+
+//-----------------------------------------------------------------------------------------------------
+//======================================== Clothes CLASS===============================================
+//-----------------------------------------------------------------------------------------------------
+
+class Clothes :public Hostel_1, Hostel_2, Hostel_3, Girls
+{
+private:
+	int iron;
+	int wash;
+	int h_m;
+public:
+	Clothes() {
+		iron = 1;
+		wash = 1;
+	}
+	void iron_clothes();
+	void wash_clothes();
+	void hostel_management();
+	void Payment();
+	void Clothes_type();
+};
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------------- IRON CLOTHES Function-----------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Clothes::iron_clothes()
+{
+	cout << "\n\t How many clothes you want to iron?  ";
+	cin >> iron;
+	iron = iron * 5;
+	Clothes_type();
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//------------------------------------------- WASH CLOTHES Function------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Clothes::wash_clothes()
+{
+	cout << "\n\tHow many clothes you want to Washed?  ";
+	cin >> wash;
+	wash = wash * 12;
+	Clothes_type();
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//--------------------------------------- HOSTEL MANAGEMENT Function-----------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Clothes::hostel_management()
+{
+	h_m = (iron + wash) * 0.15;
+	cout << "\n\tHostel Management clothing Price: "
+		<< h_m;
+	Clothes_type();
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//-------------------------------------------- PAYMENT Function  --------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Clothes::Payment() {
+	int c;
+	c = h_m + iron + wash;
+	cout << "Total Hostel prince from management is : " << c;
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//--------------------------------------- CLOTHING SYSTEM Function ------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Clothes::Clothes_type() {
+	int c_t;
+	cout << "\n\n\t\t <<<<<<<<<< Welcome to Clothing System >>>>>>>>>>"
+		<< "\n\t\t select one "
+		<< "\n\t 1-Iron"
+		<< "\n\t 2-Wash"
+		<< "\n\t 3-hostel_management"
+		<< "\n\t 4-All payment"
+		<< "\n\t 5-Main Menu\n\n\t ";
+	cin >> c_t;
+	switch (c_t) {
+	case 1:
+		iron_clothes();
+		break;
+	case 2:
+		wash_clothes();
+		break;
+	case 3:
+		hostel_management();
+		break;
+	case 4:
+		Payment();
+		break;
+	case 5:
+		//					Main_menu();
+		break;
+	}
+}
+
+//-----------------------------------------------------------------------------------------------------
+//===================================== SECURITY SYSTEM CLASS==========================================
+//-----------------------------------------------------------------------------------------------------
+
+class Security_system :public Guests {
+private:
+
+public:
+	void guests_data();
+	void duty();
+	void trip();
+	void lost();
+	void Security_menu();
+};
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//------------------------------------------ GUEST DATA Function --------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Security_system::guests_data() {
+	string ss_name;
+	int ss_id;
+	string ss_gname;
+	int sg_id;
+	int nguest;
+	int sg_total;
+	cout << "\n\n\t ==================== Guest data info ====================";
+	ifstream myfile;
+
+	if (!myfile) {
+
+		cout << "File Not Found: " << endl;
+		myfile.close();
+	}
+
+	myfile.open("Guest1.txt", ios::in);
+	myfile >> ss_id >> ss_name >> ss_gname >> nguest >> sg_id >> sg_total;
+	cout << endl;
+	cout << "|ID|" << "\t" << "|Name|" << "\t" << "|Guest Name|" << "\t" << "|Quantity|" << "\t" << "|G_ID|" << "\t" << "|Bill|" << "\n\n\n";
+	cout << " " << ss_id << "\t" << ss_name << "\t\t" << ss_gname << "\t\t" << nguest << "\t  " << sg_id << "\t" << sg_total << "\n";
+	while (1) {
+		myfile >> ss_id >> ss_name >> ss_gname >> nguest >> sg_id;
+		if (myfile.fail())
+			break;
+		cout << " " << ss_id << "\t" << ss_name << "\t\t" << ss_gname << "\t\t" << nguest << "\t  " << sg_id << "\t" << sg_total << "\n";
+	}
+
+	myfile.close();
+	Security_menu();
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//------------------------------------------ DUTY Function---------------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Security_system::duty() {
+	cout << "\n\n\t ==================== Duties ==================== "
+		<< "\n\n\t2 Guard will Give duty Day Time "
+		<< "\n\t 2 Guards Will give duty Night Time"
+		<< "\n\t 1 chief will give duty in control room";
+	Security_menu();
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//---------------------------------------- TRIP Function ----------------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Security_system::trip() {
+	cout << "\n\t==================== Trip Plans are given Below ====================";
+	cout << "\n\tTrip to Naran "
+		<< "\n\t Trip to Parks"
+		<< "\n\tTrip to Muree "
+		<< "\n\tBoneFire once a Month";
+	Security_menu();
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//------------------------------------------- LOST THINGS Function-------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Security_system::lost() {
+	cout << "\n\t\t==================== Lost Things and their fine ==================== ";
+	cout << "\n\n\t---------------------------"
+		<< "\n\tName\t\tFine "
+		<< "\n\tRoom keys ------>100"
+		<< "\n\tMobile --------->200"
+		<< "\n\tUtensils ------->500"
+		<< "\n\tChargers ------->50"
+		<< "\n\tCupboard Keys -->150"
+		<< "\n\n\t---------------------------";
+	Security_menu();
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//------------------------------------------- SECURITY MENU Function-----------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+void Security_system::Security_menu() {
+	int s_s;
+	cout << "\n\n\t\t ==================== >>>>>>Welcome to Security System <<<<<< ===================="
+		<< "\n\t\t select one "
+		<< "\n\t 1-Guests Datails"
+		<< "\n\t 2-Duties"
+		<< "\n\t 3-Trip"
+		<< "\n\t 4-Lost Things"
+		<< "\n\t 5-Main Menu\n\n\t ";
+	cin >> s_s;
+	switch (s_s) {
+	case 1:
+		guests_data();
+		break;
+	case 2:
+		duty();
+		break;
+	case 3:
+		trip();
+		break;
+	case 4:
+		lost();
+		break;
+	case 5:
+
+		break;
+	}
+}
+
+
+//************
+//################################################ MAIN CLASS ##########################################
+//************
+
+
+int main() {
+
+	Management m;
+	Hostel_1 hs_1;
+	Hostel_2 hs_2;
+	Hostel_3 hs_3;
+	Girls girls_1;
+	Salary s;
+	Mess mes;
+	Guests g;
+	Clothes cl;
+	Security_system ss;
+	int hostel_menu;
+	system("color 4B");
+b:
+	cout << "\n\n\t\t\t\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"
+		<< "\n\n\t\t\tOnline HOSTEL MANAGEMENT SYSTEM"
+		<< "\n\n\t\t\t\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"
+		<< "\n\n\t\t WE HAVE 4 HOSTELS"
+		<< "\n\t\t 1-HOSTEL 1"
+		<< "\n\t\t 2-HOSTEL 2"
+		<< "\n\t\t 3-HOSTEL 3"
+		<< "\n\t\t 4-Girls HOSTEL"
+		<< "\n\t\t 5-Exit"
+		<< "\n\n\t Select one ";
+	cin >> hostel_menu;
+	switch (hostel_menu) {
+	case 1:
+		int m_1;
+	a:
+		cout << "\n\n\t\t<<<<<<<<<<<<<<<<<<<<<<<<<<----WELCOME TO HOSTEL 1---->>>>>>>>>>>>>>>>>>>>>>>>>>"
+			<< "\n\t Select one"
+			<< "\n\t 1-Hostel Charges"
+			<< "\n\t 2-Student Entry"
+			<< "\n\t 3-Mess System"
+			<< "\n\t 4-Guest"
+			<< "\n\t 5-Clothes"
+			<< "\n\t 6-Security System"
+			<< "\n\t 7-Salary"
+			<< "\n\t 8-Total Bill of Student"
+			<< "\n\t 9-Search"
+			<< "\n\t 10-Exit \n\n\t ";
+		cin >> m_1;
+
+		if (m_1 == 1) {
+			hs_1.menu1();
+			goto a;
+		}
+		if (m_1 == 2) {
+			hs_1.student1();
+			goto a;
+		}
+		if (m_1 == 3) {
+			ofstream out("mess1.txt", ios::out | ios::binary);
+			mes.mess_system();
+			out.write((char*)&mes, sizeof(mes));
+			cout << " \n\n\tMess 1 file created";
+			out.close();
+
+			goto a;
+		}
+		if (m_1 == 4) {
+			g.guest_menu();
+			goto a;
+		}
+		if (m_1 == 5) {
+			ofstream out("clothes1.txt", ios::out | ios::binary);
+			cl.Clothes_type();
+			out.write((char*)&g, sizeof(g));
+			cout << " \n\n\tClothes 1 file created";
+			out.close();
+			goto a;
+		}
+		if (m_1 == 6) {
+			ofstream out("Security1.txt", ios::out | ios::binary);
+			ss.Security_menu();
+			out.write((char*)&ss, sizeof(ss));
+			cout << " \n\n\tSecurity 1 file created";
+			out.close();
+			goto a;
+		}
+		if (m_1 == 7) {
+			ofstream out("Salary1.txt", ios::out | ios::binary);
+			s.Employees_salary();
+			out.write((char*)&s, sizeof(s));
+			cout << " \n\n\tSalary 1 file created";
+			out.close();
+			goto a;
+		}
+		if (m_1 == 8) {
+			ofstream out("total1.txt", ios::out | ios::binary);
+			hs_1.student_total1();
+			out.write((char*)&hs_1, sizeof(hs_1));
+			cout << " \n\n\tTotal bill 1 file created";
+			out.close();
+			goto a;
+		}
+		if (m_1 == 9) {
+			hs_1.search1();
+			goto a;
+		}
+		if (m_1 == 10) {
+			goto b;
+		}
+		break;
+	case 2:
+		int m_2;
+	c:
+		cout << "\n\n\t\t<<<<<<<<<<<<<<<<<<<<<<<<<<---- WELCOME TO HOSTEL 2 ---->>>>>>>>>>>>>>>>>>>>>>>>>>"
+			<< "\n\t Select one"
+			<< "\n\t 1-Hostel Charges"
+			<< "\n\t 2-Student Entry"
+			<< "\n\t 3-Mess System"
+			<< "\n\t 4-Guest"
+			<< "\n\t 5-Clothes"
+			<< "\n\t 6-Security System"
+			<< "\n\t 7-Salary"
+			<< "\n\t 8-Total Bill of Student"
+			<< "\n\t 9-Search"
+			<< "\n\t 10-Exit \n\n\t ";
+		cin >> m_2;
+		if (m_2 == 1) {
+			hs_2.menu2();
+			goto c;
+		}
+		if (m_2 == 2) {
+			hs_2.student2();
+			goto c;
+		}
+		if (m_2 == 3) {
+			ofstream out("mess2.txt", ios::out | ios::binary);
+			mes.mess_system();
+			out.write((char*)&mes, sizeof(mes));
+			cout << " \n\n\tmess 2 file created";
+			out.close();
+			goto c;
+		}
+		if (m_2 == 4) {
+			g.guest_menu();
+			goto c;
+		}
+		if (m_2 == 5) {
+			ofstream out("clothes1.txt", ios::out | ios::binary);
+			cl.Clothes_type();
+			out.write((char*)&cl, sizeof(cl));
+			cout << " \n\n\tclothes 2 file created";
+			out.close();
+			goto c;
+		}
+		if (m_2 == 6) {
+			ofstream out("Security2.txt", ios::out | ios::binary);
+			ss.Security_menu();
+			out.write((char*)&ss, sizeof(ss));
+			cout << " \n\n\tsecurity 2 file created";
+			out.close();
+			goto c;
+		}
+		if (m_2 == 7) {
+			ofstream out("Salary2.txt", ios::out | ios::binary);
+			s.Employees_salary();
+			out.write((char*)&s, sizeof(s));
+			cout << " \n\n\tsalary 2 file created";
+			out.close();
+			goto c;
+		}
+		if (m_2 == 8) {
+			ofstream out("total2.txt", ios::out | ios::binary);
+			hs_2.student_total2();
+			out.write((char*)&hs_2, sizeof(hs_2));
+			cout << " \n\n\tTotal bill 2 file created";
+			out.close();
+			goto c;
+		}
+		if (m_2 == 9) {
+			hs_2.search2();
+			goto c;
+		}
+		if (m_2 == 10) {
+			goto b;
+		}
+
+		break;
+	case 3:
+		int m_3;
+	d:
+		cout << "\n\n\t\t<<<<<<<<<<<<<<<<<<<<<<<<<<---- WELCOME TO HOSTEL 3---->>>>>>>>>>>>>>>>>>>>>>>>>> "
+			<< "\n\t Select one"
+			<< "\n\t 1-Hostel Charges"
+			<< "\n\t 2-Student Entry"
+			<< "\n\t 3-Mess System"
+			<< "\n\t 4-Guest"
+			<< "\n\t 5-Clothes"
+			<< "\n\t 6-Security System"
+			<< "\n\t 7-Salary"
+			<< "\n\t 8-Total Bill of Student"
+			<< "\n\t 9-Search"
+			<< "\n\t 10-Exit \n\n\t ";
+		cin >> m_3;
+		if (m_3 == 1) {
+
+			hs_3.menu3();
+			goto d;
+		}
+		if (m_3 == 2) {
+			hs_3.student3();
+			goto d;
+		}
+		if (m_3 == 3) {
+			ofstream out("mess3.txt", ios::out | ios::binary);
+			mes.mess_system();
+			out.write((char*)&mes, sizeof(mes));
+			cout << " \n\n\tMess 3 file created";
+			out.close();
+			goto d;
+		}
+		if (m_3 == 4) {
+			g.guest_menu();
+			goto d;
+		}
+		if (m_3 == 5) {
+			ofstream out("clothes3.txt", ios::out | ios::binary);
+			cl.Clothes_type();
+			out.write((char*)&cl, sizeof(cl));
+			cout << " \n\n\tclothes 3 file created";
+			out.close();
+			goto d;
+		}
+		if (m_3 == 6) {
+			ofstream out("Security3.txt", ios::out | ios::binary);
+			ss.Security_menu();
+			out.write((char*)&ss, sizeof(ss));
+			cout << " \n\n\tScurity 3 file created";
+			out.close();
+			goto d;
+		}
+		if (m_3 == 7) {
+			ofstream out("Salary3.txt", ios::out | ios::binary);
+			s.Employees_salary();
+			out.write((char*)&s, sizeof(s));
+			cout << " \n\n\tsalary 3 file created";
+			out.close();
+			goto d;
+		}
+		if (m_3 == 8) {
+			ofstream out("total3.txt", ios::out | ios::binary);
+			hs_3.student_total3();
+			out.write((char*)&hs_3, sizeof(hs_3));
+			cout << " \n\n\tTota bill 3 file created";
+			out.close();
+			goto d;
+		}
+		if (m_3 == 9) {
+			hs_3.search3();
+			goto d;
+			goto d;
+		}
+		if (m_3 == 10) {
+			goto b;
+		}
+		break;
+	case 4:
+		int g_h;
+	e:
+		cout << "\n\n\t\t<<<<<<<<<<<<<<<<<<<<<<<<<<----WELCOME TO  GIRLS HOSTEL---->>>>>>>>>>>>>>>>>>>>>>>>>> "
+			<< "\n\t Select one"
+			<< "\n\t 1-Hostel Charges"
+			<< "\n\t 2-Student Entry"
+			<< "\n\t 3-Mess System"
+			<< "\n\t 4-Guest"
+			<< "\n\t 5-Clothes"
+			<< "\n\t 6-Security System"
+			<< "\n\t 7-Salary"
+			<< "\n\t 8-Total Bill of Student"
+			<< "\n\t 9-Search"
+			<< "\n\t 10-Exit \n\n\t ";
+		cin >> g_h;
+		if (g_h == 1) {
+			girls_1.menu4();
+			goto e;
+		}
+		if (g_h == 2) {
+			girls_1.student4();
+			goto e;
+		}
+		if (g_h == 3) {
+			ofstream out("mess4.txt", ios::out | ios::binary);
+			mes.mess_system();
+			out.write((char*)&mes, sizeof(mes));
+			cout << " \n\n\tMess 4 file created";
+			out.close();
+
+			goto e;
+		}
+		if (g_h == 4) {
+			g.guest_menu();
+			goto e;
+		}
+		if (g_h == 5) {
+			ofstream out("clothes4.txt", ios::out | ios::binary);
+			cl.Clothes_type();
+			out.write((char*)&cl, sizeof(cl));
+			cout << " \n\n\tclothes 4 file created";
+			out.close();
+			goto e;
+		}
+		if (g_h == 6) {
+			ofstream out("Security4.txt", ios::out | ios::binary);
+			ss.Security_menu();
+			out.write((char*)&ss, sizeof(ss));
+			cout << " \n\n\tSecurity 4 file created";
+			out.close();
+			goto e;
+		}
+		if (g_h == 7) {
+			ofstream out("Salary4.txt", ios::out | ios::binary);
+			s.Employees_salary();
+			out.write((char*)&s, sizeof(s));
+			cout << " \n\n\tSalary 4 file created";
+			out.close();
+			goto e;
+		}
+		if (g_h == 8) {
+			ofstream out("total4.txt", ios::out | ios::binary);
+			girls_1.student_total4();
+			out.write((char*)&girls_1, sizeof(girls_1));
+			cout << " \n\n\tTotal Bill 4 file created";
+			out.close();
+			goto e;
+		}
+		if (g_h == 9) {
+			girls_1.search4();
+			goto e;
+		}
+		if (g_h == 10) {
+			goto b;
+		}
+		break;
+	case 5:
+		cout << "\n\n\t\t*Thanks For Visit*"
+			<< "\n\t MADE BY BANEEN :)";
+		cout << "\n\tHOPE TO SEE YOU AGAIN BYE--)";
+		exit(1);
+		break;
+	default:
+		cout << "\n\n\t\t===>>Wrong input : " << endl;
+		goto b;
+	}
+
+}
